@@ -17,6 +17,7 @@ class Observer:
     def cleaner(self):
         self.df.columns = ['date', 'stat']
         self.df['digit'] = self.df['stat'].astype(str).str[0]
+        self.df['digit'].replace('-', '1', inplace=True)
         self.df['digit'] = self.df['digit'].astype(int)
         self.data_observation = list(
             pd.Series(self.df['digit'].value_counts()).sort_index()[1:])
